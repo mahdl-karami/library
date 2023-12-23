@@ -43,10 +43,10 @@ const Title = styled.a`
 `;
 const Author = styled.p``;
 const Info = styled.p``;
-export default function Books({likeHandler , books}) {
+export default function Books({ likeHandler, visibleBooks }) {
   return (
     <BooksList>
-      {books.map(({ id, author, image, language, pages, title, link }) => (
+      {visibleBooks.map(({ id, author, image, language, pages, title, link }) => (
         <Book key={id}>
           <BookImage src={`/src/assets/${image}`}></BookImage>
           <BookInfo>
@@ -58,7 +58,7 @@ export default function Books({likeHandler , books}) {
               {language} {pages} Pages
             </Info>
           </BookInfo>
-          <BookLike className="fa fa-heart" onClick={()=> likeHandler(id)}></BookLike>
+          <BookLike className="fa fa-heart" onClick={() => likeHandler(id)}></BookLike>
         </Book>
       ))}
     </BooksList>
