@@ -43,7 +43,9 @@ const Title = styled.a`
 `;
 const Author = styled.p``;
 const Info = styled.p``;
-export default function Books({ likeHandler, visibleBooks }) {
+export default function Books({ likeHandler, visibleBooks, favorites }) {
+  const favoritesId = favorites.map(({ id }) => id);
+
   return (
     <BooksList>
       {visibleBooks.map(({ id, author, image, language, pages, title, link }) => (
@@ -58,7 +60,7 @@ export default function Books({ likeHandler, visibleBooks }) {
               {language} {pages} Pages
             </Info>
           </BookInfo>
-          <BookLike className="fa fa-heart" onClick={() => likeHandler(id)}></BookLike>
+          <BookLike className="fa fa-heart" style={favoritesId.includes(id) ? { color: "#19cd0cd8" } : { color: "inherit" }} onClick={() => likeHandler(id)}></BookLike>
         </Book>
       ))}
     </BooksList>

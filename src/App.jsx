@@ -14,20 +14,25 @@ export default function App() {
     const searchedValue = e.target.children[0].value;
     if (searchedValue == false) {
       setVisibleBooks(books);
+      e.target.children[0].value = "";
       return;
     }
-    const newBooks = visibleBooks.filter((book) => book.title.toLocaleLowerCase().includes(searchedValue.toLocaleLowerCase()));
+    const newBooks = books.filter((book) => book.title.toLocaleLowerCase().includes(searchedValue.toLocaleLowerCase()));
     setVisibleBooks(newBooks);
   }
   function likeHandler(id) {
-    setfavorites([...favorites, visibleBooks.filter((book) => book.id == id)[0]]);
-    console.log(favorites);
+    const likedItem = visibleBooks.filter((book) => book.id == id)[0];
+    if (favorites.includes(likedItem)) {
+      setfavorites(favorites.filter((book) => book.id !== id));
+      return;
+    }
+    setfavorites([...favorites, likedItem]);
   }
   return (
     <>
       <Header />
       <Search SearchSubmit={SearchSubmit} />
-      <Library likeHandler={likeHandler} visibleBooks={visibleBooks} />
+      <Library likeHandler={likeHandler} visibleBooks={visibleBooks} favorites={favorites} />
     </>
   );
 }
