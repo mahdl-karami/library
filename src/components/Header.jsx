@@ -6,7 +6,7 @@ const Head = styled.header`
   align-items: center;
   padding: 0.7rem 1.2rem;
   background: #2e2e2e;
-  border-radius: 15px;
+  border-radius: 10px;
   a{
     color: #18CD0C  ;
     text-decoration: none;
